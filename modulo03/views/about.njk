@@ -1,22 +1,27 @@
-{% extends "layout.html" %}
+{% extends "layout.njk" %}
 
 {% block head %}
-<title>Sobre - Alisson Welder</title>
+<title>Sobre - {{ about.name}}</title>
 {% endblock %}
 
 {% block content %}
 
 
         <div id="wrapper">
-            <img src="https://avatars1.githubusercontent.com/u/49004112?s=400&u=4a50ac2b7bd4c455544ecd397fd109103c2583f5&v=4" alt="Alisson Welder">
-            <h1>Alisson Welder</h1>
-            <h2>Instrutor Web Senior</h2>
-            <p>Programador full-stack, focado em trazer o melhor ensino para iniciantes em programação. Acompanhe meu <a href="http://www.github.com/alissonwelder" target="_blank">GitHub</a></p>
+            <img src="{{ about.avatar_url }}" alt="Imagem de {{ about.name}}">
+            <h1>{{ about.name}}</h1>
+            <h2>{{ about.role}}</h2>
+            <p>{{ about.description}}</p>
         </div>
 
         <div id="links-fotter" class="links">
-            <a href="http://facebook.com/alissonwelder" target="_blank">Facebook</a>
-            <a href="https://www.linkedin.com/in/alisson-welder-288327169/" target="_blank">Linkedin</a>
+
+            {% for link in about.links %}
+            
+                <a href="{{ link.url }}" target="_blank">{{ link.name}}</a>
+
+            {% endfor %}
+
         </div>
 
         {% endblock %}
