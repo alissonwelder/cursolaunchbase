@@ -39,7 +39,7 @@ exports.post = function(req, res){
                 
         }
 
-        let {avatar_url, birth, name, services, gender} = req.body
+        let {avatar_url, name, birth, gender, services} = req.body
 
         birth = Date.parse(birth)
         const created_at = Date.now()
@@ -73,9 +73,13 @@ exports.edit = function(req, res){
     })
 
     if (!foundInstructor) return res.send("instructor not found!")
+    const instructor = {
+        ...foundInstructor,
+        birth: date(foundInstructor.birth),
+    }
 
     
-    return res.render('instructors/edit', {instructor: foundInstructor })
+    return res.render('instructors/edit', {instructor })
 }
 
 // put
