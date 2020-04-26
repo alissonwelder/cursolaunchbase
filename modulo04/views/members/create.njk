@@ -2,15 +2,15 @@
 
 {% block content %}
 
-<form class="card" method="POST" action="/instructors" >
+<form class="card" method="POST" action="/members" >
     <section 
         class="avatar" 
         style="background: url(https://source.unsplash.com/collection/9656015/500x500) no-repeat center / cover"></section>
     <section class="details">
 
-        <h3>Novo Instructor</h3>
+        <h3>Novo Membro</h3>
 
-            {% include 'instructors/fields.njk' %}
+            {% include 'members/fields.njk' %}
             
     </section>
 </form>
