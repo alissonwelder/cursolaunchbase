@@ -43,7 +43,16 @@ module.exports = {
         })
     },
     edit(req, res){
-        return
+        Instructor.find(req.params.id, function(instructor){
+            if(!instructor) return res.send("Instructor not found!")
+
+            instructor.birth = date(instructor.birth).iso
+            instructor.services = instructor.services.split(",")
+
+            instructor.created_at = date(instructor.created_at).format
+
+            return res.render("instructors/edit", { instructor })
+        })
     },
     put(req, res){
         const keys = Object.keys(req.body)
@@ -54,10 +63,14 @@ module.exports = {
             }
                 
         }
-        return
+        Instructor.update(req.body, function(){
+            return res.redirect(`/instructors/${req.body.id}`)
+        })
     },
     delete(req, res){
-        return
+        Instructor.delete(req.body.id, function(){
+            return res.redirect(`/instructors`)
+        })
     },
 }
 
